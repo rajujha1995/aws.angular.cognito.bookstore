@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import {
   catchError,
-  interval,
   map,
   Observable,
   of,
@@ -14,16 +13,13 @@ import {
 } from 'rxjs';
 import { Book } from '../../_models/book.model';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AwsCognitoService } from '../services/aws-cognito.service';
 import { environment } from '../../environments/environment';
 import { HandleImage } from '../../_models/handleimage.model';
-import { response } from 'express';
 
 @Component({
   selector: 'app-blog',
