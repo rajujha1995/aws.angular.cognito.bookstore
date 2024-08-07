@@ -1,0 +1,14 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.input-error {
+  border: 2px solid red;
+  background-color: #ffe6e6; /* Light red background */
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem; /* Smaller font size */
+  margin-top: 0.25rem; /* Space between input and error message */
+}

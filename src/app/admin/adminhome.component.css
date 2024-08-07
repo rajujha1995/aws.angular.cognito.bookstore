@@ -1,0 +1,40 @@
+/* Button Styles */
+.btn-success {
+  background-color: #28a745; /* Green */
+  border-color: #28a745;
+}
+
+.btn-danger {
+  background-color: #dc3545; /* Red */
+  border-color: #dc3545;
+}
+
+.btn {
+  border: none;
+  color: #fff;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.rounded-0 {
+  border-radius: 0;
+}
+
+/* Form Validation Styles */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.input-error {
+  border: 2px solid red;
+  background-color: #ffe6e6; /* Light red background */
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem; /* Smaller font size */
+  margin-top: 0.25rem; /* Space between input and error message */
+}

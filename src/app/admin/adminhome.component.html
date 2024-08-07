@@ -1,0 +1,229 @@
+<section class="contact_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="heading_container">
+          <h2 class="">Add Book</h2>
+        </div>
+        <form (ngSubmit)="onFormSubmit()" [formGroup]="booksForm">
+          <div class="form-group">
+            <input
+              type="number"
+              placeholder="Book Id"
+              formControlName="id"
+              [ngClass]="{
+                'input-error':
+                  booksForm.get('id')?.invalid && booksForm.get('id')?.touched
+              }"
+            />
+            <div
+              *ngIf="
+                booksForm.get('id')?.invalid && booksForm.get('id')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="booksForm.get('id')?.errors?.['required']"
+                >Book Id is required.</small
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              placeholder="Book Name"
+              formControlName="name"
+              [ngClass]="{
+                'input-error':
+                  booksForm.get('name')?.invalid &&
+                  booksForm.get('name')?.touched
+              }"
+            />
+            <div
+              *ngIf="
+                booksForm.get('name')?.invalid && booksForm.get('name')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="booksForm.get('name')?.errors?.['required']"
+                >Book Name is required.</small
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              placeholder="Book Author"
+              formControlName="author"
+              [ngClass]="{
+                'input-error':
+                  booksForm.get('author')?.invalid &&
+                  booksForm.get('author')?.touched
+              }"
+            />
+            <div
+              *ngIf="
+                booksForm.get('author')?.invalid &&
+                booksForm.get('author')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="booksForm.get('author')?.errors?.['required']"
+                >Book Author is required.</small
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="number"
+              placeholder="Book Price"
+              formControlName="price"
+              [ngClass]="{
+                'input-error':
+                  booksForm.get('price')?.invalid &&
+                  booksForm.get('price')?.touched
+              }"
+            />
+            <div
+              *ngIf="
+                booksForm.get('price')?.invalid &&
+                booksForm.get('price')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="booksForm.get('price')?.errors?.['required']"
+                >Book Price is required.</small
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              placeholder="Book Description"
+              formControlName="description"
+              class="message-box"
+              [ngClass]="{
+                'input-error':
+                  booksForm.get('description')?.invalid &&
+                  booksForm.get('description')?.touched
+              }"
+            />
+            <div
+              *ngIf="
+                booksForm.get('description')?.invalid &&
+                booksForm.get('description')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="booksForm.get('description')?.errors?.['required']">
+                Book Description is required.
+              </small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              placeholder="Book Image URL"
+              formControlName="imageurl"
+              [ngClass]="{
+                'input-error':
+                  booksForm.get('imageurl')?.invalid &&
+                  booksForm.get('imageurl')?.touched
+              }"
+            />
+            <div
+              *ngIf="
+                booksForm.get('imageurl')?.invalid &&
+                booksForm.get('imageurl')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="booksForm.get('imageurl')?.errors?.['required']"
+                >Book Image URL is required.</small
+              >
+            </div>
+          </div>
+          <div class="btn-box">
+            <button type="submit">SEND</button>
+          </div>
+        </form>
+      </div>
+
+      <section class="contact_section layout_padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="heading_container">
+                <h2>Books List</h2>
+              </div>
+              <ng-container *ngIf="books$ | async as books">
+                <table
+                  class="table table-bordered"
+                  *ngIf="books.length > 0; else noBooks"
+                >
+                  <thead>
+                    <tr>
+                      <th>Book Id</th>
+                      <th>Book Name</th>
+                      <th>Book Author</th>
+                      <th>Book Price (CA $)</th>
+                      <th>Book Description</th>
+                      <th>Book Image</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let book of books; let i = index">
+                      <td>{{ book.id }}</td>
+                      <td>{{ book.name }}</td>
+                      <td>{{ book.author }}</td>
+                      <td>{{ book.price }}</td>
+                      <td>{{ book.description }}</td>
+                      <td>
+                        <img
+                          [src]="book.imageurl"
+                          alt="{{ book.name }}"
+                          width="50"
+                        />
+                      </td>
+                      <td>
+                        <ul class="list-inline">
+                          <li class="list-inline-item">
+                            <button
+                              class="btn btn-success btn-sm rounded-0"
+                              type="button"
+                              (click)="onEdit(book.id)"
+                              title="Edit"
+                            >
+                              <i class="fa fa-edit"></i>
+                            </button>
+                          </li>
+                          <li class="list-inline-item">
+                            <button
+                              class="btn btn-danger btn-sm rounded-0"
+                              type="button"
+                              (click)="onDelete(book.id)"
+                              title="Delete"
+                            >
+                              <i class="fa fa-trash"></i>
+                            </button>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ng-container>
+              <ng-template #noBooks>
+                <p>No books to display.</p>
+              </ng-template>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
